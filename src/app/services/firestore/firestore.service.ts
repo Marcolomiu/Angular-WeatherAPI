@@ -7,23 +7,27 @@ import { Observable } from 'rxjs';
 })
 export class FirestoreService {
 
-  constructor(
-    private firestore: AngularFirestore
-  ) {}
-  //Crea un nuevo gato
-  public createCat(data: {nombre: string, url: string}) {
-    return this.firestore.collection('cats').add(data);
-  }
-  //Obtiene un gato
-  public getCat(documentId: string) {
-    return this.firestore.collection('cats').doc(documentId).snapshotChanges();
-  }
-  //Obtiene todos los gatos
-  public getCats() {
-    return this.firestore.collection('cats').snapshotChanges();
-  }
-  //Actualiza un gato
-  public updateCat(documentId: string, data: any) {
-    return this.firestore.collection('cats').doc(documentId).set(data);
-  }
+	constructor(
+		private firestore: AngularFirestore
+	) {}
+
+	//Crea una nueva activity
+	public createActivity(data: {nombre: string, fecha: Date, prediccion: string}) {
+		return this.firestore.collection('activities').add(data);
+	}
+
+	//Obtiene una activity
+	public getActivity(documentId: string) {
+		return this.firestore.collection('activities').doc(documentId).snapshotChanges();
+	}
+
+	//Obtiene todas las activities
+	public getActivities() {
+		return this.firestore.collection('activities').snapshotChanges();
+	}
+
+	//Actualiza una activity
+	public updateActivity(documentId: string, data: any) {
+		return this.firestore.collection('activities').doc(documentId).set(data);
+	}
 }
