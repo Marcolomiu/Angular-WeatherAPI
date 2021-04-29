@@ -1,6 +1,7 @@
 <div>
-
-	<app-create></app-create>
+	<h1>Lista de actividades</h1>
+	<a routerLink="/create">Crear una actividad nueva</a>
+	<!--<app-create></app-create>-->
 	
 	<div class="grd-row-col-4">
 		<div class="activities_container">
@@ -11,7 +12,7 @@
 					</div>
 
 					<div>
-						{{activity.data.fecha}}
+						{{ activity.data.fecha | date:'longDate' }}
 					</div>
 				</div>
 				<div class="column">

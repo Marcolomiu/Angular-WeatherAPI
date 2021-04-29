@@ -4,78 +4,89 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+	selector: 'app-create',
+	templateUrl: './create.component.html',
+	styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
 
 
-  public documentId = null;
-	public currentStatus = 1;
-	public newActivityForm = new FormGroup({
-		nombre: new FormControl('', Validators.required),
-		fecha: new FormControl('', Validators.required),
-		prediccion: new FormControl(''),
-		id: new FormControl('')
-	});
-
-  public newActivity(form, documentId = this.documentId) {
-		
-		console.log(`Status: ${this.currentStatus}`);
-
-		if (this.currentStatus == 1) {
-			let data = {
-				nombre: form.nombre,
-				fecha: form.fecha,
-				prediccion: null //Aquí va la petició a https://www.metaweather.com/api/
-			}
-			this.firestoreService.createActivity(data).then(() => {
-
-				console.log('Documento creado exitósamente!');
-
-				this.newActivityForm.setValue({
-					nombre: '',
-					fecha: '',
-					prediccion: '',
-					id: ''
-				});
-			}, (error) => {
-				console.error(error);
-			});
-		} else {
-			let data = {
-				nombre: form.nombre,
-				fecha: form.fecha,
-				prediccion: null //Aquí va la petició a https://www.metaweather.com/api/
-			}
-			this.firestoreService.updateActivity(documentId, data).then(() => {
-				this.currentStatus = 1;
-				this.newActivityForm.setValue({
-					nombre: '',
-					fecha: '',
-					prediccion: '',
-					id: ''
-				});
-				console.log('Documento editado exitósamente');
-				}, (error) => {
-					console.log(error);
-				}
-			);
-		}
-	}
-
-
-  constructor(private firestoreService: FirestoreService) { 
-		this.newActivityForm.setValue({
-			id: '',
-			nombre: '',
-			fecha: '',
-			prediccion: ''
+	public documentId = null;
+		public currentStatus = 1;
+		public newActivityForm = new FormGroup({
+			nombre: new FormControl('', Validators.required),
+			fecha: new FormControl('', Validators.required),
+			prediccion: new FormControl(''),
+			id: new FormControl('')
 		});
-	}
 
-  ngOnInit(): void {
-  }
+	public newActivity(form, documentId = this.documentId) {
+			
+			console.log(`Status: ${this.currentStatus}`);
+
+			if (this.currentStatus == 1) {
+
+				let fecha = form.fecha;
+				var fechaSeparada = fecha.split("-");
+				var año = fechaSeparada[0];
+				var mes = fechaSeparada[1];
+				var dia = fechaSeparada[2];
+
+				this.firestoreService.getWeather(año, mes, dia).then((res) => {
+
+					let data = {
+						nombre: form.nombre,
+						fecha: form.fecha,
+						prediccion: `https://www.metaweather.com/static/img/weather/${res}.svg` //Aquí va la petició a https://www.metaweather.com/api/
+					}
+					console.log(form.fecha);
+					this.firestoreService.createActivity(data).then(() => {
+
+						console.log('Documento creado exitósamente!');
+
+						this.newActivityForm.setValue({
+							nombre: '',
+							fecha: '',
+							prediccion: '',
+							id: ''
+						});
+					}, (error) => {
+						console.error(error);
+					});
+				});
+			} else {
+				let data = {
+					nombre: form.nombre,
+					fecha: form.fecha,
+					prediccion: null //Aquí va la petició a https://www.metaweather.com/api/
+				}
+				this.firestoreService.updateActivity(documentId, data).then(() => {
+					this.currentStatus = 1;
+					this.newActivityForm.setValue({
+						nombre: '',
+						fecha: '',
+						prediccion: '',
+						id: ''
+					});
+					console.log('Documento editado exitósamente');
+					}, (error) => {
+						console.log(error);
+					}
+				);
+			}
+		}
+
+
+	constructor(private firestoreService: FirestoreService) { 
+			this.newActivityForm.setValue({
+				id: '',
+				nombre: '',
+				fecha: '',
+				prediccion: ''
+			});
+		}
+
+	ngOnInit(): void {
+	}
 
 }

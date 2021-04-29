@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+	selector: 'app-list',
+	templateUrl: './list.component.html',
+	styleUrls: ['./list.component.css']
 })
 
 export class ListComponent implements OnInit {
 
-  public activities = [];
-
+	public activities = [];
 
 	constructor(private firestoreService: FirestoreService) {	}
 

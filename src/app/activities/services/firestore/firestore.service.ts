@@ -15,6 +15,31 @@ export class FirestoreService {
 	public createActivity(data: {nombre: string, fecha: Date, prediccion: string}) {
 		return this.firestore.collection('activities').add(data);
 	}
+	//Obtiene una activity
+	public async getWeather(año: number, mes: number, dia: number): Promise<any> {
+
+		let array = [];
+
+		const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/753692/${año}/${mes}/${dia}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+		});
+	
+		console.log(response)
+		if (response.status !== 200) {
+			return false;
+		}
+
+		//return await response.json();
+		array = await response.json();
+		
+		console.log(array[0]);
+		console.log(array[0].weather_state_abbr);
+		
+		return array[0].weather_state_abbr;
+	}
 
 	//Obtiene una activity
 	public getActivity(documentId: string) {

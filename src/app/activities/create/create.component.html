@@ -1,5 +1,5 @@
 <div>
-	<h1>Lista de actividades</h1>
+	<h1>Crear una nueva actividad</h1>
 	<form (ngSubmit)="newActivity(newActivityForm.value)" [formGroup]="newActivityForm">
 		<input type="hidden" formControlName="id">
 	
@@ -11,4 +11,5 @@
 	
 		<input type="submit" class="btn--blue btn--add" value="Agregar">
 	</form>
+	<a routerLink="/list">Volver a la lista de actividades</a>
 </div>
