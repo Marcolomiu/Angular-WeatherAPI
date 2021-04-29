@@ -8,11 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { ActivitiesComponent } from './activities/activities.component';
+import { ListComponent } from './activities/list/list.component';
+import { CreateComponent } from './activities/create/create.component';
 
 @NgModule({
 declarations: [
 	AppComponent,
-	ActivitiesComponent
+	ActivitiesComponent,
+ 	ListComponent,
+  	CreateComponent
 ],
 imports: [
 	BrowserModule,

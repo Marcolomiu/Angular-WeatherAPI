@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from './services/firestore/firestore.service';
+import { FirestoreService } from '../services/firestore/firestore.service';
+
 
 @Component({
-	selector: 'app-activities',
-	templateUrl: './activities.component.html',
-	styleUrls: ['./activities.component.css']
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css']
 })
-export class ActivitiesComponent implements OnInit {
+export class CreateComponent implements OnInit {
 
-	public activities = [];
 
-	public documentId = null;
+  public documentId = null;
 	public currentStatus = 1;
 	public newActivityForm = new FormGroup({
 		nombre: new FormControl('', Validators.required),
@@ -20,7 +20,7 @@ export class ActivitiesComponent implements OnInit {
 		id: new FormControl('')
 	});
 
-	public newActivity(form, documentId = this.documentId) {
+  public newActivity(form, documentId = this.documentId) {
 		
 		console.log(`Status: ${this.currentStatus}`);
 
@@ -65,7 +65,8 @@ export class ActivitiesComponent implements OnInit {
 		}
 	}
 
-	constructor(private firestoreService: FirestoreService) { 
+
+  constructor(private firestoreService: FirestoreService) { 
 		this.newActivityForm.setValue({
 			id: '',
 			nombre: '',
@@ -74,16 +75,7 @@ export class ActivitiesComponent implements OnInit {
 		});
 	}
 
-	ngOnInit() {
-		this.firestoreService.getActivities().subscribe((activitiesSnapshot) => {
-			this.activities = [];
-			activitiesSnapshot.forEach((activityData: any) => {
-				this.activities.push({
-					id: activityData.payload.doc.id,
-					data: activityData.payload.doc.data()
-				});
-			})
-			console.log(this.activities);
-		});
-	}
+  ngOnInit(): void {
+  }
+
 }

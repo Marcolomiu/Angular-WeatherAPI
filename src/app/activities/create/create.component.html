@@ -1,0 +1,14 @@
+<div>
+	<h1>Lista de actividades</h1>
+	<form (ngSubmit)="newActivity(newActivityForm.value)" [formGroup]="newActivityForm">
+		<input type="hidden" formControlName="id">
+	
+		<label for="nombre">Nombre</label>
+		<input type="text" formControlName="nombre">
+	
+		<label for="fecha">Fecha</label>
+		<input type="date" formControlName="fecha">
+	
+		<input type="submit" class="btn--blue btn--add" value="Agregar">
+	</form>
+</div>

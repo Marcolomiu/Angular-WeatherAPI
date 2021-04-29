@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestoreService } from '../services/firestore/firestore.service';
+import { FirestoreService } from '../activities/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-cats',
