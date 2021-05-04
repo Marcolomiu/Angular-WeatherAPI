@@ -1,6 +1,6 @@
 <div>
 	<h1>Lista de actividades</h1>
-	<a routerLink="/create">Crear una actividad nueva</a>
+	<a routerLink="/create">Crear una actividad nueva</a><br><br>
 	<!--<app-create></app-create>-->
 	
 	<div class="grd-row-col-4">
@@ -15,15 +15,16 @@
 						{{ activity.data.fecha | date:'longDate' }}
 					</div>
 				</div>
-				<div class="column">
+				<div class="column1">
 					<div>
 						<img [src]="activity.data.prediccion">
+						
 					</div>
 				</div>
 				<div>
-					<div>
-						<button class="btn--green btn--s btn1">Editar</button>
-						<button class="btn--red btn--s btn2">Eliminar</button>
+					<div >
+						<button class="btn--green btn--s btn1">Editar </button>
+						<button class="btn--red btn--s btn2" onclick="deleteActivity(activity.data.nombre)">Eliminar</button>
 					</div>
 				</div>
 			</div>

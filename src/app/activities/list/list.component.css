@@ -1,11 +1,39 @@
-.column {
+.column1 {
 	float: left;
-	width: 50%;
+	width: 5%;
+	object-fit: contain;
 }
-
 
 .row:after {
 	content: "";
 	display: table;
-	clear: both;
+	margin: 5%;
+}
+
+.btn1 {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 10px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 5px 2px;
+	cursor: pointer;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.btn2 {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 10px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 5px 2px;
+	cursor: pointer;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }

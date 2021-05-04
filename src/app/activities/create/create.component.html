@@ -1,15 +1,21 @@
 <div>
-	<h1>Crear una nueva actividad</h1>
-	<form (ngSubmit)="newActivity(newActivityForm.value)" [formGroup]="newActivityForm">
-		<input type="hidden" formControlName="id">
-	
-		<label for="nombre">Nombre</label>
-		<input type="text" formControlName="nombre">
-	
-		<label for="fecha">Fecha</label>
-		<input type="date" formControlName="fecha">
-	
-		<input type="submit" class="btn--blue btn--add" value="Agregar">
-	</form>
-	<a routerLink="/list">Volver a la lista de actividades</a>
+	<h1> Crear una nueva actividad</h1>
+
+	<div class="container">
+		<form (ngSubmit)="newActivity(newActivityForm.value)" [formGroup]="newActivityForm">
+			<input type="hidden" formControlName="id">
+		
+			<label for="nombre">Nombre de Actividad:</label>
+			<input type="text" formControlName="nombre"><br>
+		
+			<label for="fecha">Fecha de Actividad:</label>
+			<input type="date" formControlName="fecha"><br>
+		
+			<input type="submit" class="btn--blue btn--add" value=" Agregar">
+		</form>
+	</div>
+
+	<div class="container1">
+		<a routerLink="/list">Volver a la lista de actividades</a>
+	</div>
 </div>

@@ -27,16 +27,19 @@ export class FirestoreService {
 			},
 		});
 	
-		console.log(response)
+		console.log('Response:', response);
+
+		/*
 		if (response.status !== 200) {
 			return false;
 		}
+		*/
 
 		//return await response.json();
 		array = await response.json();
 		
-		console.log(array[0]);
-		console.log(array[0].weather_state_abbr);
+		console.log('Array[0]:', array[0]);
+		console.log('Array[0].weather_state_abbr:', array[0].weather_state_abbr);
 		
 		return array[0].weather_state_abbr;
 	}
