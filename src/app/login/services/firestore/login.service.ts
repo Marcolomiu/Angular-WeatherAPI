@@ -24,23 +24,25 @@ export class LoginService {
 			if (user) {
 				this.userData = user;
 				localStorage.setItem('user', JSON.stringify(this.userData));
-				JSON.parse(localStorage.getItem('user'));
+				localStorage.getItem('user');
 			} else {
 				localStorage.setItem('user', null);
-				JSON.parse(localStorage.getItem('user'));
+				localStorage.getItem('user');
 			}
 		})
 	}
 
 	// Returns true when user is looged in and email is verified
 	get isLoggedIn(): boolean {
-		const user = JSON.parse(localStorage.getItem('user'));
+		const user = localStorage.getItem('user');
 		return (user !== null) ? true : false;
 	}
 
 	async login(email: string, password: string) {
 
-		console.log(email, password);
+		this.user = {email,password};
+		console.log(this.user);
+
 		try {
 			const result = await this.afAuth.signInWithEmailAndPassword(
 				email,
@@ -49,6 +51,9 @@ export class LoginService {
 			console.log(result);
 
 			if (result) {
+
+				localStorage.setItem('user', JSON.stringify(this.userData));
+
 				this.router.navigate(['/list']);
 			}
 
