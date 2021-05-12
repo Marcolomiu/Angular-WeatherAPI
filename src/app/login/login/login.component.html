@@ -1,17 +1,16 @@
-<div>
+
+<div class="container">
+	<h3>Sign In</h3>
 	<div>
-		<h3>Sign In</h3>
-		<div>
-			<input type="text" placeholder="Email" #userEmail required>
-		</div>
+		<input type="text" placeholder="Email" #userEmail required>
+	</div>
 
-		<div>
-			<input type="password" placeholder="Password" #userPassword required>
-		</div>
+	<div>
+		<input type="password" placeholder="Password" #userPassword required>
+	</div>
 
-		<!-- Calling SignIn Api from AuthService -->
-		<div>
-			<input type="button" value="Log in" (click)="loginService.login(userEmail.value, userPassword.value)">
-		</div>
+	<!-- Calling SignIn Api from AuthService -->
+	<div>
+		<input type="button" value="Log in" (click)="loginService.login(userEmail.value, userPassword.value)">
 	</div>
 </div>
